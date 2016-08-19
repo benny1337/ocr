@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="businesscardapp.View.StartView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="Register">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Take picture" x:Name="Save" Icon="photo.png" Command="{Binding TakePhotoCommand}"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+
+  <StackLayout Padding="5">
+
+    <ListView x:Name="list" ItemsSource="{Binding Properties}" SeparatorVisibility="None" BackgroundColor="White">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell x:Name="viewcell">
+            <Grid>
+              <Grid.ColumnDefinitions>               
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="1*" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Grid.Row="0" Text="{Binding Label}" />
+              <ffimageloading:CachedImage Grid.Column="1" Grid.Row="0" Source="clear.png" Opacity="0.54" IsVisible="{Binding IsClearVisible}" HeightRequest="10" DownsampleToViewSize="True">
+                <Image.GestureRecognizers>
+                  <TapGestureRecognizer	Command="{Binding Clear}" />
+                </Image.GestureRecognizers>
+              </ffimageloading:CachedImage>
+              <Entry Grid.Column="2" Grid.Row="0" Text="{Binding Data}"  />
+              <ffimageloading:CachedImage Grid.Column="3" Grid.Row="0" Opacity="{Binding ButtonOpacity}" Source="{Binding ButtonSource}" HeightRequest="35" WidthRequest="35">
+                <Image.GestureRecognizers>
+                  <TapGestureRecognizer	Command="{Binding Swap}"  CommandParameter="{Binding Source={x:Reference viewcell}, Path=BindingContext}" BindingContext="{Binding Source={x:Reference list}, Path=BindingContext}"/>
+                </Image.GestureRecognizers>
+              </ffimageloading:CachedImage>
+
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <Button Text="Save as Lead"></Button>
+    <Button Text="Save as Contact"></Button>
+    
+  </StackLayout>
+</ContentPage>

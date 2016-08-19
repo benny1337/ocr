@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#2d77aa"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:tabIndicatorColor="@color/window_background"
+    app:tabGravity="fill"
+    android:textAllCaps="false"
+    app:tabMode="fixed"
+    android:elevation="4dp" />
